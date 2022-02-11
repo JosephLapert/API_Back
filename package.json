@@ -1,0 +1,25 @@
+{
+  "name": "node_ap_1",
+  "version": "1.0.0",
+  "description": "back-end AP_1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon app.js",
+    "prod": "cross-env NODE_ENV=prod nodemon app.js",
+    "integrateDB": "cross-env mariadb -u root -p < ./database/schema.sql",
+    "integrateProc": "cross-env mariadb -u root -p < ./database/procedures.sql"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "express-promise-router": "^4.1.1",
+    "mariadb": "^2.5.5"
+  }
+}
