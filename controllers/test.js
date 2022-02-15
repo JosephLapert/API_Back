@@ -1,7 +1,7 @@
 const pool = require('../config/database');
-const { call } = require('../utils/index');                          // pas besoin de mettre le '/index' quand le fichier se nomme index.
+const { call } = require('../utils/index');                                                                         // pas besoin de mettre le '/index' quand le fichier se nomme index.
 
-module.exports = {                                                  // export pour l'utiliser dans un autre fichier
+module.exports = {                                                                                                  // export pour l'utiliser dans un autre fichier
     
     test: async (req, res) => {
 
@@ -24,13 +24,12 @@ module.exports = {                                                  // export po
 
         }
     },
-
     deleteUtilisateur: async (req, res) => {
         let connection; 
         try {
             const { id } = req.params;
             connection = await pool.getConnection();
-            const result = await connection.query('CALL delete_utilisateur(?);',[id]);      // utiliser le même nom pour la requete.
+            const result = await connection.query('CALL delete_utilisateur(?);',[id]);                              // utiliser le même nom pour la requete.
             console.log(result);
             return res.status(200).json( { success: result } );
 
@@ -48,7 +47,7 @@ module.exports = {                                                  // export po
     insertUtilisateur : async (req, res) =>{
 
         let connection;
-        const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body
+        const { nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body
         try {
             connection = await pool.getConnection();
             
@@ -63,6 +62,25 @@ module.exports = {                                                  // export po
 
         } finally {
             if (connection) connection.end()                                        
+        }
+    },
+    updateUtilisateur : async (req, res) => {
+        let connection;
+        const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd} = req.body;
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL update_utilisateur(?,?,?,?,?,?,?,?,?,?,?,?);', [id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd]);
+            return res.status(200).json ( { success: result } );
+
+        } catch (error) {
+            
+            return res.status(400).json( {error: error.message});   
+
+        } finally {
+
+            if (connection) connection.end()  
+
         }
     },
 };

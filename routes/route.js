@@ -3,13 +3,11 @@ const router = require('express-promise-router')();                         //ut
 
 
 // Définition en parametre (destructuring) les fonctions qui sont dans le controllers
-const { test, deleteUtilisateur, insertUtilisateur } = require('../controllers/test');
+const { test, deleteUtilisateur, insertUtilisateur, updateUtilisateur } = require('../controllers/test');
 
 
 router
     .route('/')
-    
-    
 router
     .route('/test')
     .get(test)
@@ -19,10 +17,9 @@ router
     .route('/users/:id')
     .delete(deleteUtilisateur)
     
-    router
+router
     .route('/users/')
     .post(insertUtilisateur)
-
-
+    .put(updateUtilisateur)
 
 module.exports = router;    //export pour l'utiliser dans un autre fichier */
