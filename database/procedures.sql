@@ -61,3 +61,12 @@ BEGIN
     WHERE 
     id_utilisateur = p_id_utilisateur;
 END //
+
+CREATE OR REPLACE PROCEDURE insert_comment (
+    IN p_commentaire VARCHAR(255)
+)
+
+BEGIN
+    INSERT INTO commentaire (commentaire)
+    VALUES (p_commentaire);
+END //

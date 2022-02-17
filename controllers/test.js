@@ -83,4 +83,22 @@ module.exports = {                                                              
 
         }
     },
+    
+    insertComment : async (req, res) => {
+        let connection;
+        const { commentaire } = req.body;
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL insert_comment(?);', [commentaire]);
+            return res.status(200).json ( { success: result } );
+
+        } catch (error) {
+            
+            return res.status(400).json( {error: error.message}); 
+        } finally {
+
+            if (connection) connection.end()  
+        }
+    },
 };

@@ -3,10 +3,10 @@ require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env` })
 const express = require('express');                         // Import d'express
 const app = express();                                      // utilisation de app importer par express
 const route = require('./routes/route');                    // appel des routes.
-
-/**------------------------------------------------------Serveur express--------------------------------------------- **/
-
+const cors = require('cors');
+app.use(cors())
 app.use(express.json());                                    //middleware qui parse le body en JSON pour qu'il soit utilisable
+/**------------------------------------------------------Serveur express--------------------------------------------- **/
 
 app.get('/api', ( _ , res) =>{                              // route pour avoir des infos : 2 params (req, res) <= function callback
 
