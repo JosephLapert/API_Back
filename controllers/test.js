@@ -118,5 +118,47 @@ module.exports = {                                                              
             if (connection) connection.end()  
 
         }
-    }
+    },
+    verifPasswordUser : async (req, res) => {
+        let connection;
+        const { email, psswd } = req.body;
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL verif_psswd_user(?,?);', [email, psswd]);
+            if(!result[0].length) {
+                return res.status(401).json ( { error: "identifiant invalide"} )
+            }
+            
+            return res.status(200).json ( { success: result } );
+
+        } catch (error) {
+
+            return res.status(400).json( {error: error.message}); 
+            
+        } finally {
+
+            if (connection) connection.end() 
+
+        }
+    },
+    selectSeanceTest : async (req, res) => {
+        let connection;
+        const { nom, prenom, date_seance} = req.body;
+
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL count_utilisateur_seance(?,?,?);', [nom, prenom, date_seance]);
+            return res.status(200).json ( { success: result } );
+        } catch (error) {
+            
+            return res.status(400).json( {error: error.message});
+
+        } finally {
+
+            if (connection) connection.end;
+
+        }
+    },
 };
