@@ -77,4 +77,14 @@ CREATE OR REPLACE PROCEDURE seance_test (
 BEGIN
     SELECT * from seance_test
     WHERE seance_test.id_coach = p_id_coach;
+END//
+
+CREATE OR REPLACE PROCEDURE insert_statut_inscription (
+    IN p_nom VARCHAR(255)
+)
+
+BEGIN
+    INSERT INTO  statut_inscription (nom)
+    VALUES (p_nom);
 END //
+
