@@ -70,3 +70,11 @@ BEGIN
     INSERT INTO commentaire (commentaire)
     VALUES (p_commentaire);
 END //
+
+CREATE OR REPLACE PROCEDURE seance_test (
+    IN p_id_coach INT
+)
+BEGIN
+    SELECT * from seance_test
+    WHERE seance_test.id_coach = p_id_coach;
+END //
