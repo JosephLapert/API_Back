@@ -88,3 +88,32 @@ BEGIN
     VALUES (p_nom);
 END //
 
+CREATE OR REPLACE PROCEDURE verif_psswd_user (
+    IN p_email VARCHAR(255),
+    IN p_psswd VARCHAR(255)
+)
+
+BEGIN
+    SELECT p_email, psswd FROM utilisateur
+    WHERE email = p_email AND psswd = p_psswd;
+END //
+CREATE OR REPLACE PROCEDURE count_utilisateur_seance (
+    IN p_nom VARCHAR(255),
+    IN p_prenom VARCHAR(255),
+    IN p_date_seance DATE
+)
+
+BEGIN
+    SELECT
+    nom = p_nom, 
+    prenom = p_prenom,
+    date_seance = p_date_seance
+FROM
+    inscription
+INNER JOIN `seance_test` ON 
+    seance_test.id_seance_test = inscription.id_seance_test
+INNER JOIN utilisateur ON 
+    utilisateur.id_utilisateur = inscription.id_utilisateur
+WHERE
+    p_date_seance = '1988-03-23';
+END //
