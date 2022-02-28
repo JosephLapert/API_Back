@@ -3,6 +3,7 @@ CREATE DATABASE m2l;
 use m2l;
 CREATE TABLE coach(
    id_coach INT AUTO_INCREMENT NOT NULL,
+   nom VARCHAR(255),
    PRIMARY KEY(id_coach)
 );
 

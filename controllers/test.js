@@ -1,4 +1,4 @@
-const pool = require('../config/database');
+const pool = require('./database');
 const { call } = require('../utils/index');                                                                         // pas besoin de mettre le '/index' quand le fichier se nomme index.
 
 module.exports = {                                                                                                  // export pour l'utiliser dans un autre fichier
@@ -48,6 +48,7 @@ module.exports = {                                                              
 
         let connection;
         const { nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body
+        console.log(req.body);
         try {
             connection = await pool.getConnection();
             
@@ -66,7 +67,7 @@ module.exports = {                                                              
     },
     updateUtilisateur : async (req, res) => {
         let connection;
-        const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd} = req.body;
+        const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body;
         try {
 
             connection = await pool.getConnection();
@@ -144,12 +145,12 @@ module.exports = {                                                              
     },
     selectSeanceTest : async (req, res) => {
         let connection;
-        const { nom, prenom, date_seance} = req.body;
+        const { id_seance} = req.params;
 
         try {
 
             connection = await pool.getConnection();
-            const result = await connection.query('CALL count_utilisateur_seance(?,?,?);', [nom, prenom, date_seance]);
+            const result = await connection.query('CALL count_utilisateur_seance(?);', [id_seance]);
             return res.status(200).json ( { success: result } );
         } catch (error) {
             
@@ -161,4 +162,37 @@ module.exports = {                                                              
 
         }
     },
+    insertDateTest : async (req, res) => {
+        let connection;
+        const { date_seance, id_coach} = req.body;
+
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL insert_date_test(?,?);', [date_seance, id_coach]);
+            return res.status(200).json ( { success: result } );
+        } catch (error) {
+            return res.status(400).json( {error: error.message});
+        } finally { 
+            if (connection) connection.end;
+        }
+
+    },
+    selectUserId : async (req, res) => {
+        let connection;
+        const { id } = req.params;
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL select_user_id(?);', [id]);
+            return res.status(200).json ( { success: result } );
+        } catch (error) {
+            return res.status(400).json( {error: error.message});
+        } finally {
+            if (connection) connection.end;
+        }
+    },
+
+    
+
 };

@@ -72,11 +72,13 @@ BEGIN
 END //
 
 CREATE OR REPLACE PROCEDURE seance_test (
-    IN p_id_coach INT
+    IN p_id_seance INT
 )
 BEGIN
-    SELECT * from seance_test
-    WHERE seance_test.id_coach = p_id_coach;
+    SELECT nom, `date_seance` from seance_test
+    INNER JOIN coach 
+    ON seance_test.id_coach = coach.id_coach
+    WHERE seance_test.id_seance_test = p_id_seance;
 END //
 
 CREATE OR REPLACE PROCEDURE verif_psswd_user (
@@ -107,4 +109,27 @@ INNER JOIN utilisateur ON
     utilisateur.id_utilisateur = inscription.id_utilisateur
 WHERE
     p_date_seance = '1988-03-23';
+END //
+
+DELIMITER //
+
+CREATE OR REPLACE PROCEDURE insert_date_test (
+    IN p_date_seance DATE,
+    IN p_id_coach INT
+)
+
+BEGIN
+    INSERT INTO seance_test (date_seance, id_coach)
+    VALUES (p_date_seance, p_id_coach);
+END //
+
+CREATE OR REPLACE PROCEDURE select_user_id (
+    IN p_id INT
+)
+
+BEGIN
+
+    SELECT * FROM utilisateur
+    WHERE id_utilisateur = p_id;
+
 END //
