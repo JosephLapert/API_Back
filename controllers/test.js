@@ -3,14 +3,14 @@ const { call } = require('../utils/index');                                     
 
 module.exports = {                                                                                                  // export pour l'utiliser dans un autre fichier
     
-    test: async (req, res) => {
+    selectAllUtilisateur: async ( _ , res) => {
 
         let connection;
-
+        
         try {
 
             connection = await pool.getConnection();
-            const result = await connection.query('SELECT * FROM utilisateur;');
+            const result = await connection.query('CALL select_all_utilisateur();');
             console.log(result);
             return res.status(200).json( { success: result} );
 
@@ -21,9 +21,9 @@ module.exports = {                                                              
         } finally {
 
             if (connection) connection.end();
-
         }
     },
+
     deleteUtilisateur: async (req, res) => {
         let connection; 
         try {
@@ -67,11 +67,11 @@ module.exports = {                                                              
     },
     updateUtilisateur : async (req, res) => {
         let connection;
-        const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body;
         try {
+            const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body;
 
             connection = await pool.getConnection();
-            const result = await connection.query('CALL update_utilisateur(?,?,?,?,?,?,?,?,?,?,?,?);', [id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd]);
+            const result = await connection.query('CALL update_utilisateur(?,?);', [id,sexe]);
             return res.status(200).json ( { success: result } );
 
         } catch (error) {
@@ -81,7 +81,6 @@ module.exports = {                                                              
         } finally {
 
             if (connection) connection.end()  
-
         }
     },
     insertComment : async (req, res) => {
@@ -99,6 +98,85 @@ module.exports = {                                                              
         } finally {
 
             if (connection) connection.end()  
+        }
+    },
+
+    selectAllComment: async ( _ , res) => {
+
+        let connection;
+        
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL select_all_comment();');
+            console.log(result);
+            return res.status(200).json( { success: result} );
+
+        } catch (error) {
+            
+            return res.status(400).json( { error: error.message } );
+
+        } finally {
+
+            if (connection) connection.end();
+        }
+    },
+
+    deleteComment: async (req, res) => {
+        let connection; 
+        try {
+            const { id } = req.params;
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL delete_comment(?);',[id]);                              // utiliser le même nom pour la requete.
+            console.log(result);
+            return res.status(200).json( { success: result } );
+
+        }
+        catch (error) {
+
+            return res.status(400).json( { error: error.message } );
+
+        } finally {
+
+            if (connection) connection.end();
+        }
+    },
+
+    insertDateSeance : async (req, res) => {
+        let connection;
+        const { date_seance, id_coach } = req.body;
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL insert_date_test(?,?);', [date_seance, id_coach]);
+            return res.status(200).json ( { success: result } );
+
+        } catch (error) {
+            
+            return res.status(400).json( {error: error.message}); 
+        } finally {
+
+            if (connection) connection.end()  
+        }
+    },
+    selectAllDateTest: async ( _ , res) => {
+
+        let connection;
+        
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL select_all_date_test();');
+            console.log(result);
+            return res.status(200).json( { success: result} );
+
+        } catch (error) {
+            
+            return res.status(400).json( { error: error.message } );
+
+        } finally {
+
+            if (connection) connection.end();
         }
     },
     selectSeance : async (req, res) => {
