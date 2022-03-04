@@ -105,15 +105,15 @@ BEGIN
     SELECT * FROM seance_test;
 END //
 
--- CREATE OR REPLACE PROCEDURE seance_test (
---     IN p_id_seance INT
--- )
--- BEGIN
---     SELECT nom, `date_seance` from seance_test
---     INNER JOIN coach 
---     ON seance_test.id_coach = coach.id_coach
---     WHERE seance_test.id_seance_test = p_id_seance;
--- END //
+CREATE OR REPLACE PROCEDURE seance_test (
+     IN p_id_seance_test INT
+)
+ BEGIN
+     SELECT nom, `date_seance` from seance_test
+     INNER JOIN coach 
+     ON seance_test.id_coach = coach.id_coach
+     WHERE seance_test.id_seance_test = p_id_seance_test;
+ END //
 
 CREATE OR REPLACE PROCEDURE verif_psswd_user (
     IN p_email VARCHAR(255),
@@ -124,47 +124,53 @@ BEGIN
     SELECT p_email, psswd FROM utilisateur
     WHERE email = p_email AND psswd = p_psswd;
 END //
-CREATE OR REPLACE PROCEDURE count_utilisateur_seance (
-    IN p_nom VARCHAR(255),
-    IN p_prenom VARCHAR(255),
-    IN p_date_seance DATE
-)
 
-BEGIN
-    SELECT
-    nom = p_nom, 
-    prenom = p_prenom,
-    date_seance = p_date_seance
-FROM
-    inscription
-INNER JOIN `seance_test` ON 
-    seance_test.id_seance_test = inscription.id_seance_test
-INNER JOIN utilisateur ON 
-    utilisateur.id_utilisateur = inscription.id_utilisateur
-WHERE
-    p_date_seance = '1988-03-23';
-END //
+-- CREATE OR REPLACE PROCEDURE count_utilisateur_seance (
+--     IN p_nom VARCHAR(255),
+--     IN p_prenom VARCHAR(255),
+--     IN p_date_seance DATE
+-- )
 
-DELIMITER //
-
+-- BEGIN
+--     SELECT
+--     nom = p_nom, 
+--     prenom = p_prenom,
+--     date_seance = p_date_seance
+-- FROM
+--     inscription
+-- INNER JOIN `seance_test` ON 
+--     seance_test.id_seance_test = inscription.id_seance_test
+-- INNER JOIN utilisateur ON 
+--     utilisateur.id_utilisateur = inscription.id_utilisateur
+-- WHERE
+--     p_date_seance = '1988-03-23';
+-- END //
 
 
 CREATE OR REPLACE PROCEDURE select_user_id (
     IN p_id INT
 )
-
 BEGIN
-
     SELECT * FROM utilisateur
     WHERE id_utilisateur = p_id;
-
 END //
 
--- CREATE OR REPLACE PROCEDURE inscription_seance_test (
---     IN p_id_utilisateur INT,
---     IN p_id_seance_test INT
--- )
--- BEGIN
---     INSERT INTO seance_test
---     VALUES (NULL, p_id_utilisateur, p_id_seance_test, 1)
--- END //
+CREATE OR REPLACE PROCEDURE inscription_seance (
+    IN p_id_utilisateur INT,
+    IN p_id_seance_test INT 
+)
+BEGIN
+    INSERT INTO seance_test
+    VALUES (NULL, p_id_utilisateur, p_id_seance_test, 1);
+END //
+
+CREATE OR REPLACE PROCEDURE insert_statut_inscription (
+    IN p_id_statut_inscription INT,
+    IN p_nom VARCHAR(255)
+)
+BEGIN
+
+    INSERT INTO statut_inscription
+    VALUES (p_id_statut_inscription, p_nom);
+
+END //

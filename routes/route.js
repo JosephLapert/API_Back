@@ -3,7 +3,7 @@ const router = require('express-promise-router')();                         //ut
 
 
 // Définition en parametre (destructuring) les fonctions qui sont dans le controllers
-const { deleteUtilisateur, insertUtilisateur, updateUtilisateur, insertComment, selectSeance, verifPasswordUser, selectSeanceTest, insertDateTest, selectUserId, insertStatutInscription, selectAllUtilisateur, selectAllComment, deleteComment, selectAllDateTest } = require('../controllers/test');
+const { deleteUtilisateur, insertUtilisateur, updateUtilisateur, insertComment, selectSeance, verifPasswordUser, selectSeanceTest, insertDateTest, selectUserId, insertStatutInscription, selectAllUtilisateur, selectAllComment, deleteComment, selectAllDateTest, inscriptionSeanceTest } = require('../controllers/test');
 
 
 router
@@ -29,12 +29,12 @@ router
     .delete(deleteComment)
 router
     .route('/seance/')
-    // .get(selectSeanceTest)
     .get(selectAllDateTest)
     .post(insertDateTest)
 router
     .route('/seances/:id')
     .get(selectSeance)
+    .post(inscriptionSeanceTest)
 router
     .route('/nom/')
     .post(insertStatutInscription)

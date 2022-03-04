@@ -1,5 +1,6 @@
 const pool = require('./database');
 const { call } = require('../utils/index');                                                                         // pas besoin de mettre le '/index' quand le fichier se nomme index.
+const req = require('express/lib/request');
 
 module.exports = {                                                                                                  // export pour l'utiliser dans un autre fichier
     
@@ -200,11 +201,11 @@ module.exports = {                                                              
     },
     insertStatutInscription : async (req,res) => {
         let connection;
-        const { nom } = req.body;
+        const { id, nom } = req.body;
         try {
 
             connection = await pool.getConnection();
-            const result = await connection.query('CALL insert_statut_inscription(?);', [nom]);
+            const result = await connection.query('CALL insert_statut_inscription(?,?);', [id, nom]);
             return res.status(200).json ( { success: result } );
 
         } catch (error) {
@@ -240,25 +241,6 @@ module.exports = {                                                              
             
         }
     },
-    selectSeanceTest : async (req, res) => {
-        let connection;
-        const { id_seance} = req.params;
-
-        try {
-
-            connection = await pool.getConnection();
-            const result = await connection.query('CALL count_utilisateur_seance(?);', [id_seance]);
-            return res.status(200).json ( { success: result } );
-        } catch (error) {
-            
-            return res.status(400).json( {error: error.message});
-
-        } finally {
-
-            if (connection) connection.end;
-
-        }
-    },
     insertDateTest : async (req, res) => {
         let connection;
         const { date_seance, id_coach} = req.body;
@@ -289,6 +271,19 @@ module.exports = {                                                              
             if (connection) connection.end;
         }
     },
-    
+    inscriptionSeanceTest : async (req, res) => {
+        let connection;
+        const {id_utilisateur, id_seance_test} = req.body;
+
+     try {
+        connection = await pool.getConnection();
+        const result = await connection.query('inscription_seance_test(?,?);', [id_utilisateur, id_seance_test]);
+        return res.status(200).json ( { success: result } );
+    } catch (error) {
+        return res.status(400).json( {error: error.message});
+    } finally {
+        if (connection) connection.end;
+        }
+    }
 
 };
