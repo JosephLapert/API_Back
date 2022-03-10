@@ -1,10 +1,7 @@
 const router = require('express-promise-router')();                         //utilisation du module pour la création de routes
 
-
-
 // Définition en parametre (destructuring) les fonctions qui sont dans le controllers
-const { test, deleteUtilisateur, insertUtilisateur, updateUtilisateur, insertComment, selectSeance, verifPasswordUser, selectSeanceTest, insertDateTest, selectUserId } = require('../controllers/test');
-
+const { test, deleteUtilisateur, insertUtilisateur, updateUtilisateur, insertComment, insertStatutInscription, selectSeance, verifPasswordUser, selectSeanceTest, insertDateTest, selectUserId, login, checkLoginStatus, logout } = require('../controllers/test');
 
 router
     .route('/')
@@ -35,5 +32,12 @@ router
 router
     .route('/psswd/')
     .get(verifPasswordUser)
+router
+    .route('/auth/')
+    .get(checkLoginStatus)
+    .post(login)
+router
+    .route('/auth/logout/')
+    .get(logout)
 
 module.exports = router;    //export pour l'utiliser dans un autre fichier */

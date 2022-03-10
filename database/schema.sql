@@ -51,7 +51,7 @@ CREATE TABLE utilisateur(
 );
 
 CREATE TABLE inscription(
-   id_commentaire INT AUTO_INCREMENT NOT NULL,
+   id_commentaire INT NULL,
    id_utilisateur INT NOT NULL,
    id_seance_test INT NOT NULL,
    id_statut_inscription INT NOT NULL,

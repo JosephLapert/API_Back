@@ -28,7 +28,7 @@ CREATE OR REPLACE PROCEDURE insert_utilisateur (
 
 BEGIN
     INSERT INTO utilisateur (nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd)
-    VALUES (p_nom, p_prenom, p_ddn, p_sexe, p_adresse, p_cp, p_ville, p_pays, p_mobile, p_email, p_psswd);
+    VALUES (p_nom, p_prenom, p_ddn, p_sexe, p_adresse, p_cp, p_ville, p_pays, p_mobile, p_email, SHA2(p_psswd, 512));
 END //
 
 CREATE OR REPLACE PROCEDURE update_utilisateur (
@@ -95,7 +95,6 @@ CREATE OR REPLACE PROCEDURE count_utilisateur_seance (
     IN p_prenom VARCHAR(255),
     IN p_date_seance DATE
 )
-
 BEGIN
     SELECT
     nom = p_nom, 
@@ -108,7 +107,7 @@ INNER JOIN `seance_test` ON
 INNER JOIN utilisateur ON 
     utilisateur.id_utilisateur = inscription.id_utilisateur
 WHERE
-    p_date_seance = '1988-03-23';
+    date_seance = p_date_seance;
 END //
 
 DELIMITER //
@@ -132,4 +131,22 @@ BEGIN
     SELECT * FROM utilisateur
     WHERE id_utilisateur = p_id;
 
+END //
+
+CREATE OR REPLACE PROCEDURE inscription_seance_test (
+    IN p_id_utlisateur INT,
+    IN p_id_seance_test INT
+)
+BEGIN
+    INSERT INTO seance_test 
+    VALUES (NULL, p_id_utilisateur, p_id_seance_test, 1);
+END //
+
+CREATE OR REPLACE PROCEDURE checkCredentials (
+    IN p_email VARCHAR(255), IN p_psswd VARCHAR(255)
+)
+BEGIN
+    SELECT id_utilisateur, email
+    FROM utilisateur
+    WHERE utilisateur.email = p_email AND utilisateur.psswd = SHA2(p_psswd, 512);
 END //

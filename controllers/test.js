@@ -164,7 +164,7 @@ module.exports = {                                                              
     },
     selectSeanceTest : async (req, res) => {
         let connection;
-        const { id_seance} = req.params;
+        const { id_seance } = req.params;
 
         try {
 
@@ -211,6 +211,38 @@ module.exports = {                                                              
             if (connection) connection.end;
         }
     },
-    
+    login: async (req, res) => {
+        const { email, password } = req.body
 
+        let connexion;
+        try {
+            connexion = await pool.getConnection();
+            const result = await connexion.query("CALL checkCredentials(?,?)", [email, password]);
+            const data = result[0][0];
+            req.session.uid = data.id_utilisateur;
+            req.session.email = data.email;
+            return res.status(200).json({ success: data });
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        } finally {
+            if (connexion) connexion.end();
+        }
+    },
+    checkLoginStatus: async (req, res) => {
+        const { uid, email } = req.session;
+        if (uid && email) {
+            return res.status(200).json({ success: { uid, email } });
+        }
+        return res.status(401).send();        
+    },
+
+    logout: (req, res) => {
+        console.log(req.session);
+        if (req?.session?.uid) {
+            req.session.destroy();
+            console.log(req.session)
+            return res.status(200).send()
+        }
+        return res.status(401).send()
+    }
 };

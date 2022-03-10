@@ -16,11 +16,13 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^14.3.2",
     "express": "^4.17.3",
     "express-promise-router": "^4.1.1",
+    "express-session": "^1.17.2",
     "mariadb": "^2.5.6"
   }
 }
