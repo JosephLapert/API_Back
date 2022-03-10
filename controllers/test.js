@@ -290,10 +290,7 @@ module.exports = {                                                              
             if (connection) connection.end;
         }
     },
-
-    login: async (req, res) => {
-        const { email, password } = req.body
-
+    
     inscriptionSeanceTest : async (req, res) => {
         let connection;
         const { id_utilisateur, id_seance_test } = req.body;
@@ -307,7 +304,10 @@ module.exports = {                                                              
     } finally {
         if (connection) connection.end;
         }
-    }
+    },
+    login: async (req, res) => {
+        const { email, password } = req.body
+
 
         let connexion;
         try {
