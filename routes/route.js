@@ -27,11 +27,11 @@ router
 router
     .route('/seance/')
     .get(selectAllDateTest)
-    .post(insertDateTest)
+    .post(inscriptionSeanceTest)
+    // .post(insertDateTest)
 router
     .route('/seances/:id')
     .get(selectSeance)
-    .post(inscriptionSeanceTest)
 router
     .route('/nom/')
     .post(insertStatutInscription)

@@ -241,7 +241,6 @@ module.exports = {                                                              
             
         }
     },
-<<<<<<< HEAD
     selectSeanceTest : async (req, res) => {
         let connection;
         const { id_seance } = req.params;
@@ -261,8 +260,6 @@ module.exports = {                                                              
 
         }
     },
-=======
->>>>>>> f7859cf1a84b50b35d7e5b1c0b2f3dc784ca22f5
     insertDateTest : async (req, res) => {
         let connection;
         const { date_seance, id_coach} = req.body;
@@ -293,17 +290,17 @@ module.exports = {                                                              
             if (connection) connection.end;
         }
     },
-<<<<<<< HEAD
+
     login: async (req, res) => {
         const { email, password } = req.body
-=======
+
     inscriptionSeanceTest : async (req, res) => {
         let connection;
-        const {id_utilisateur, id_seance_test} = req.body;
+        const { id_utilisateur, id_seance_test } = req.body;
 
      try {
         connection = await pool.getConnection();
-        const result = await connection.query('inscription_seance_test(?,?);', [id_utilisateur, id_seance_test]);
+        const result = await connection.query('CALL inscription_seance(?,?);', [id_utilisateur, id_seance_test]);
         return res.status(200).json ( { success: result } );
     } catch (error) {
         return res.status(400).json( {error: error.message});
@@ -311,7 +308,6 @@ module.exports = {                                                              
         if (connection) connection.end;
         }
     }
->>>>>>> f7859cf1a84b50b35d7e5b1c0b2f3dc784ca22f5
 
         let connexion;
         try {
@@ -344,4 +340,5 @@ module.exports = {                                                              
         }
         return res.status(401).send()
     }
+
 };
