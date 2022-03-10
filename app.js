@@ -28,7 +28,7 @@ app.use(session({
 app.get('/api', ( _ , res) =>{                              // route pour avoir des infos : 2 params (req, res) <= function callback
 
     res.status(200).json({
-        success: 'API',
+        success: 'Vous etes connecté !',
     });
 });
 

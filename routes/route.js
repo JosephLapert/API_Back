@@ -6,26 +6,32 @@ const { test, deleteUtilisateur, insertUtilisateur, updateUtilisateur, insertCom
 router
     .route('/')
 router
-    .route('/test')
-    .get(test)
+    // .route('/test')
+    // .get(test)
 router
     .route('/users/:id')
     .delete(deleteUtilisateur)
     .get(selectUserId)
 router
     .route('/users/')
+    .get(selectAllUtilisateur)
     .post(insertUtilisateur)
     .put(updateUtilisateur)
 router
     .route('/comment/')
     .post(insertComment)
+    .get(selectAllComment)
+router
+    .route('/comment/:id')
+    .delete(deleteComment)
 router
     .route('/seance/')
-    .get(selectSeanceTest)
+    .get(selectAllDateTest)
     .post(insertDateTest)
 router
     .route('/seances/:id')
     .get(selectSeance)
+    .post(inscriptionSeanceTest)
 router
     .route('/nom/')
     .post(insertStatutInscription)
