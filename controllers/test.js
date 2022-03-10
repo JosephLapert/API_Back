@@ -305,6 +305,7 @@ module.exports = {                                                              
         if (connection) connection.end;
         }
     },
+    
     login: async (req, res) => {
         const { email, password } = req.body
 
