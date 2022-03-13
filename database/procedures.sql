@@ -173,22 +173,12 @@ CREATE OR REPLACE PROCEDURE inscription_seance_test (
     IN p_id_seance_test INT
 )
 BEGIN
-<<<<<<< HEAD
     INSERT INTO seance_test 
     VALUES (NULL, p_id_utilisateur, p_id_seance_test, 1);
 END //
 
 CREATE OR REPLACE PROCEDURE checkCredentials (
     IN p_email VARCHAR(255), IN p_psswd VARCHAR(255)
-=======
-    INSERT INTO seance_test
-    VALUES (1, p_id_utilisateur, p_id_seance_test, 3);
-END //
-
-CREATE OR REPLACE PROCEDURE insert_statut_inscription (   -- PROCEDURE fonctionnelle
-    IN p_id_statut_inscription INT,
-    IN p_nom VARCHAR(255)
->>>>>>> 5568ef4 (avant fusion)
 )
 BEGIN
     SELECT id_utilisateur, email
