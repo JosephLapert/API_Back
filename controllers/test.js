@@ -307,13 +307,13 @@ module.exports = {                                                              
     },
     
     login: async (req, res) => {
-        const { email, password } = req.body
+        const { email, psswd } = req.body
 
 
         let connexion;
         try {
             connexion = await pool.getConnection();
-            const result = await connexion.query("CALL checkCredentials(?,?)", [email, password]);
+            const result = await connexion.query("CALL checkCredentials(?,?)", [email, psswd]);
             const data = result[0][0];
             req.session.uid = data.id_utilisateur;
             req.session.email = data.email;

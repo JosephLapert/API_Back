@@ -18,3 +18,5 @@ Restriction d'utilisateur et coach
 Créer un component NavBar à mettre dans APP 
 
 créer un footer comme component NavBar
+
+Faire une requete avec une jointure avec la table coach
