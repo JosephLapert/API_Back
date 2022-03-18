@@ -1,0 +1,18 @@
+inscription date séance pour l'utilisateur 
+
+Voir la liste et sincrire & 
+
+Avoir accès à son statut d'inscription.
+
+utilisateur voit son statut test & et le commentaire.
+
+
+Restriction d'utilisateur et coach
+
+éventuelle amélioration pour la V2
+
+-------------------------------------------
+
+Créer un component NavBar à mettre dans APP 
+
+créer un footer comme component NavBar
