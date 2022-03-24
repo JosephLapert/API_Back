@@ -32,32 +32,32 @@ END //
 
 CREATE OR REPLACE PROCEDURE update_utilisateur (
     IN p_id_utilisateur INT,
---     IN p_nom VARCHAR(255),
---     IN p_prenom VARCHAR(255),
---     IN p_ddn DATE, 
-    IN p_sexe VARCHAR(1)
---     IN p_adresse VARCHAR(255), 
---     IN p_cp INT, 
---     IN p_ville VARCHAR(255),
---     IN p_pays VARCHAR(255), 
---     IN p_mobile INT, 
---     IN p_email VARCHAR(255), 
---     IN p_psswd VARCHAR(255) 
+    IN p_nom VARCHAR(255),
+    IN p_prenom VARCHAR(255),
+    IN p_ddn DATE, 
+    IN p_sexe VARCHAR(1),
+    IN p_adresse VARCHAR(255), 
+    IN p_cp INT, 
+    IN p_ville VARCHAR(255),
+    IN p_pays VARCHAR(255), 
+    IN p_mobile INT, 
+    IN p_email VARCHAR(255), 
+    IN p_psswd VARCHAR(255) 
 )
 BEGIN
     UPDATE utilisateur 
     SET
-        -- nom = p_nom, 
---         prenom = p_prenom,
---         ddn = p_ddn,
-        sexe = p_sexe
---         adresse = p_adresse,
---         cp = p_cp,
---         ville = p_ville,
---         pays = p_pays,
---         mobile = p_mobile,
---         email = p_email,
---         psswd = p_psswd
+        nom = p_nom, 
+        prenom = p_prenom,
+        ddn = p_ddn,
+        sexe = p_sexe,
+        adresse = p_adresse,
+        cp = p_cp,
+        ville = p_ville,
+        pays = p_pays,
+        mobile = p_mobile,
+        email = p_email,
+        psswd = p_psswd
     WHERE 
     id_utilisateur = p_id_utilisateur;
 END //
@@ -105,15 +105,15 @@ BEGIN
     SELECT * FROM seance_test;
 END //
 
--- CREATE OR REPLACE PROCEDURE seance_test (
---      IN p_id_seance_test INT
--- )
---  BEGIN
---      SELECT nom, `date_seance` from seance_test
---      INNER JOIN coach 
---      ON seance_test.id_coach = coach.id_coach
---      WHERE seance_test.id_seance_test = p_id_seance_test;
---  END //
+CREATE OR REPLACE PROCEDURE seance_test (
+     IN p_id_seance_test INT
+)
+ BEGIN
+     SELECT nom, `date_seance` from seance_test
+     INNER JOIN coach 
+     ON seance_test.id_coach = coach.id_coach
+     WHERE seance_test.id_seance_test = coach.id_coach;
+ END //
 
 CREATE OR REPLACE PROCEDURE verif_psswd_user (
     IN p_email VARCHAR(255),
