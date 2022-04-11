@@ -72,7 +72,7 @@ module.exports = {                                                              
             const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body;
 
             connection = await pool.getConnection();
-            const result = await connection.query('CALL update_utilisateur(?,?);', [id,sexe]);
+            const result = await connection.query('CALL update_utilisateur(?,?);', [id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd]);
             return res.status(200).json ( { success: result } );
 
         } catch (error) {
@@ -186,7 +186,7 @@ module.exports = {                                                              
         try {
 
             connection = await pool.getConnection();
-            const result = await connection.query('CALL seance_test(?);', [id]);
+            const result = await connection.query('CALL get_seance_test(?);', [id]);
             return res.status(200).json ( { success: result } );
 
         } catch (error) {
@@ -262,7 +262,7 @@ module.exports = {                                                              
     },
     insertDateTest : async (req, res) => {
         let connection;
-        const { date_seance, id_coach} = req.body;
+        const { date_seance, id_coach } = req.body;
 
         try {
 
@@ -297,7 +297,7 @@ module.exports = {                                                              
 
      try {
         connection = await pool.getConnection();
-        const result = await connection.query('CALL inscription_seance(?,?);', [id_utilisateur, id_seance_test]);
+        const result = await connection.query('CALL inscription_seance_test(?,?);', [id_utilisateur, id_seance_test]);
         return res.status(200).json ( { success: result } );
     } catch (error) {
         return res.status(400).json( {error: error.message});
@@ -307,13 +307,13 @@ module.exports = {                                                              
     },
     
     login: async (req, res) => {
-        const { email, password } = req.body
+        const { email, psswd } = req.body
 
 
         let connexion;
         try {
             connexion = await pool.getConnection();
-            const result = await connexion.query("CALL checkCredentials(?,?)", [email, password]);
+            const result = await connexion.query("CALL checkCredentials(?,?)", [email, psswd]);
             const data = result[0][0];
             req.session.uid = data.id_utilisateur;
             req.session.email = data.email;

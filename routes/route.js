@@ -27,8 +27,10 @@ router
 router
     .route('/seance/')
     .get(selectAllDateTest)
+    .post(insertDateTest)
+    router
+    .route('seancess/')
     .post(inscriptionSeanceTest)
-    // .post(insertDateTest)
 router
     .route('/seances/:id')
     .get(selectSeance)
