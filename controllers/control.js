@@ -308,11 +308,7 @@ module.exports = {                                                              
     
     login: async (req, res) => {
         const { email, psswd } = req.body
-<<<<<<< HEAD:controllers/test.js
 
-
-=======
->>>>>>> e49bae1e968f2926e7e10cb8f7e9227cbf7d74e4:controllers/control.js
         let connexion;
         try {
             connexion = await pool.getConnection();
