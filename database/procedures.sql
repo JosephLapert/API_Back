@@ -157,11 +157,7 @@ CREATE OR REPLACE PROCEDURE inscription_seance_test (
     IN p_id_seance_test INT
 )
 BEGIN
-<<<<<<< HEAD
     INSERT INTO inscription 
-=======
-    INSERT INTO seance_test 
->>>>>>> e49bae1e968f2926e7e10cb8f7e9227cbf7d74e4
     VALUES (NULL, p_id_utilisateur, p_id_seance_test, 1);
 END //
 
