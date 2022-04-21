@@ -339,5 +339,20 @@ module.exports = {                                                              
             return res.status(200).send()
         }
         return res.status(401).send()
+    },
+    getUsers : async (req, res) => {
+        let connexion;
+
+        try {
+            connexion = await pool.getConnection();
+            const result = await connexion.query("CALL getUsers()");
+            return res.status(200).json ( { success: result } );
+        } catch (error) {
+            return res.status(400).json( {error: error.message});
+        }finally {
+            if (connexion) connexion.end();
+        }
+
+
     }
 };
