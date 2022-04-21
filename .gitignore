@@ -1,2 +1,7 @@
 node_modules/
+<<<<<<< HEAD
 config
+=======
+config
+database/permission.sql
+>>>>>>> joseph

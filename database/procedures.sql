@@ -105,15 +105,15 @@ BEGIN
     SELECT * FROM seance_test;
 END //
 
--- CREATE OR REPLACE PROCEDURE seance_test (
---      IN p_id_seance_test INT
--- )
---  BEGIN
---      SELECT nom, `date_seance` from seance_test
---      INNER JOIN coach 
---      ON seance_test.id_coach = coach.id_coach
---      WHERE seance_test.id_seance_test = p_id_seance_test;
---  END //
+CREATE OR REPLACE PROCEDURE get_seance_test (
+     IN p_id_seance_test INT
+)
+ BEGIN
+     SELECT nom, `date_seance` from seance_test
+     INNER JOIN coach 
+     ON seance_test.id_coach = coach.id_coach
+     WHERE seance_test.id_seance_test = p_id_seance_test;
+ END //
 
 CREATE OR REPLACE PROCEDURE verif_psswd_user (
     IN p_email VARCHAR(255),
@@ -157,7 +157,7 @@ CREATE OR REPLACE PROCEDURE inscription_seance_test (
     IN p_id_seance_test INT
 )
 BEGIN
-    INSERT INTO seance_test 
+    INSERT INTO inscription 
     VALUES (NULL, p_id_utilisateur, p_id_seance_test, 1);
 END //
 

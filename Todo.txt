@@ -11,12 +11,19 @@ Restriction d'utilisateur et coach
 
 éventuelle amélioration pour la V2
 
+<<<<<<< HEAD:Nouveau document texte.txt
 
 
+=======
+>>>>>>> joseph:Todo.txt
 -------------------------------------------
 
 Créer un component NavBar à mettre dans APP 
 
+<<<<<<< HEAD:Nouveau document texte.txt
 créer un footer comme component NavBar
 
 Faire une requete avec une jointure avec la table coach
+=======
+créer un footer comme component NavBar
+>>>>>>> joseph:Todo.txt
