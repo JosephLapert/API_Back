@@ -2,7 +2,7 @@ const router = require('express-promise-router')();                         //ut
 
 const { route } = require('express/lib/application');
 // Définition en parametre (destructuring) les fonctions qui sont dans le controllers
-const { test, deleteUtilisateur, insertUtilisateur,inscriptionSeanceTest,deleteComment,selectAllDateTest ,selectAllComment ,selectAllUtilisateur , updateUtilisateur, insertComment, insertStatutInscription, selectSeance, verifPasswordUser, selectSeanceTest, insertDateTest, selectUserId, login, checkLoginStatus, logout } = require('../controllers/control');
+const { test, deleteUtilisateur, insertUtilisateur,inscriptionSeanceTest,deleteComment,selectAllDateTest ,selectAllComment ,selectAllUtilisateur , updateUtilisateur, insertComment, insertStatutInscription, selectSeance, verifPasswordUser, selectSeanceTest, insertDateTest, selectUserId, login, checkLoginStatus, logout, insertInscription } = require('../controllers/control');
 
 router
     .route('/')
@@ -48,6 +48,9 @@ router
 router
     .route('/auth/logout/')
     .get(logout)
+router
+    .route('/inscription/')
+    .post(insertInscription)
 router                              
     .route('/authent/')            // route pour l'authentification mobile de l'entraîneur
     .post(login)                   // post pour log l'entraîneur sur l'appli mobile

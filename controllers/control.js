@@ -66,6 +66,7 @@ module.exports = {                                                              
             if (connection) connection.end()                                        
         }
     },
+
     updateUtilisateur : async (req, res) => {
         let connection;
         try {
@@ -84,6 +85,7 @@ module.exports = {                                                              
             if (connection) connection.end()  
         }
     },
+
     insertComment : async (req, res) => {
         let connection;
         const { commentaire } = req.body;
@@ -160,6 +162,7 @@ module.exports = {                                                              
             if (connection) connection.end()  
         }
     },
+
     selectAllDateTest: async ( _ , res) => {
 
         let connection;
@@ -314,6 +317,9 @@ module.exports = {                                                              
             connexion = await pool.getConnection();
             const result = await connexion.query("CALL checkCredentials(?,?)", [email, psswd]);
             const data = result[0][0];
+            if (!data) {
+                return res.status(401).send();
+            }
             req.session.uid = data.id_utilisateur;
             req.session.email = data.email;
             return res.status(200).json({ success: data });
@@ -339,5 +345,20 @@ module.exports = {                                                              
             return res.status(200).send()
         }
         return res.status(401).send()
+    },
+
+    insertInscription: async (req, res) => {
+        let connection;
+        const { idUtilisateur, idSeanceTest, idStatutInscription } = req.body
+        try {
+            connection = await pool.getConnection();
+            const result = await connection.query('CALL insert_utilisateur_seance(?,?,?);', [idUtilisateur, idSeanceTest, idStatutInscription]);
+            return res.status(200).json ( { success: result } );
+        } catch (error) {
+            return res.status(400).json( {error: error.message});                   
+
+        } finally {
+            if (connection) connection.end()                                        
+        }
     }
 };
