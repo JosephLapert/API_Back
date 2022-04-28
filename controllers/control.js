@@ -308,15 +308,41 @@ module.exports = {                                                              
         if (connection) connection.end;
         }
     },
+
+    loginMobile: async (req, res) => {
+
+        const { email, psswd} = req.body
+        console.log(req.body);
+        let connection;
+
+        try {
+
+            connection = await pool.getConnection();
+            const result = await connection.query("CALL checkCredentials(?,?);", [email, psswd]);
+            const data = result[0][0];
+            if (!data) {
+                return res.status(401).send();
+            }
+            return res.status(200).json( {success:data} );
+
+        } catch (error) {
+
+            return res.status(400).json( {error: error.message} )
+        } finally {
+
+            if(connection) connection.end();
+        }
+    },
     
     login: async (req, res) => {
         const { email, psswd } = req.body
 
-        let connexion;
+        let connection;
         try {
-            connexion = await pool.getConnection();
-            const result = await connexion.query("CALL checkCredentials(?,?)", [email, psswd]);
+            connection = await pool.getConnection();
+            const result = await connection.query("CALL checkCredentials(?,?);", [email, psswd]);
             const data = result[0][0];
+            // console.log(data);
             if (!data) {
                 return res.status(401).send();
             }
@@ -326,7 +352,7 @@ module.exports = {                                                              
         } catch (error) {
             return res.status(400).json({ error: error.message });
         } finally {
-            if (connexion) connexion.end();
+            if (connection) connection.end();
         }
     },
     checkLoginStatus: async (req, res) => {
