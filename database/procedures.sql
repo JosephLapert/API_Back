@@ -162,10 +162,28 @@ BEGIN
 END //
 
 CREATE OR REPLACE PROCEDURE checkCredentials (
-    IN p_email VARCHAR(255), IN p_psswd VARCHAR(255)
+    IN p_email VARCHAR(255), 
+    IN p_psswd VARCHAR(255)
 )
 BEGIN
     SELECT id_utilisateur, email
     FROM utilisateur
     WHERE utilisateur.email = p_email AND utilisateur.psswd = SHA2(p_psswd, 512);
+<<<<<<< HEAD
+=======
+END //
+
+CREATE OR REPLACE PROCEDURE insert_utilisateur_seance (
+    IN p_id_utilisateur INT,
+    IN p_id_seance_test INT,
+    IN p_id_statut_inscription INT
+)
+BEGIN
+    INSERT INTO inscription (id_utilisateur, id_seance_test, id_statut_inscription)
+    VALUES (
+        p_id_utilisateur,
+        p_id_seance_test,
+        p_id_statut_inscription 
+    );
+>>>>>>> joseph
 END //
