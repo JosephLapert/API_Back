@@ -10,11 +10,13 @@ router
     .route('/users/:id')
     .delete(deleteUtilisateur)
     .get(selectUserId)
+    .put(updateUtilisateur)
+    
 router
     .route('/users/')
     .get(selectAllUtilisateur)
     .post(insertUtilisateur)
-    .put(updateUtilisateur)
+
 router
     .route('/comment/')
     .post(insertComment)

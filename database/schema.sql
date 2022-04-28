@@ -56,9 +56,10 @@ CREATE TABLE inscription(
    id_seance_test INT NOT NULL,
    id_statut_inscription INT NOT NULL,
    FOREIGN KEY(id_commentaire) REFERENCES commentaire(id_commentaire),
-   FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id_utilisateur),
+   FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE CASCADE,
    FOREIGN KEY(id_seance_test) REFERENCES seance_test(id_seance_test),
    FOREIGN KEY(id_statut_inscription) REFERENCES statut_inscription(id_statut_inscription)
+
 );
 
 

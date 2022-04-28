@@ -70,10 +70,11 @@ module.exports = {                                                              
     updateUtilisateur : async (req, res) => {
         let connection;
         try {
-            const { id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body;
+            const { nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd } = req.body;
+            const { id } = req.params;
 
             connection = await pool.getConnection();
-            const result = await connection.query('CALL update_utilisateur(?,?);', [id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd]);
+            const result = await connection.query('CALL update_utilisateur(?,?,?,?,?,?,?,?,?,?,?,?);', [id, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd]);
             return res.status(200).json ( { success: result } );
 
         } catch (error) {
