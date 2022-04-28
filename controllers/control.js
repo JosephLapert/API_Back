@@ -365,7 +365,7 @@ module.exports = {                                                              
 
     logout: (req, res) => {
         console.log(req.session);
-        if (req?.session?.uid) {
+        if (req.session.uid) {
             req.session.destroy();
             console.log(req.session)
             return res.status(200).send()
