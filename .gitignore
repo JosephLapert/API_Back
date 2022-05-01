@@ -1,4 +1,4 @@
 node_modules/
 database/permission.sql
 config
-config/dev.env
+config/

@@ -169,8 +169,6 @@ BEGIN
     SELECT id_utilisateur, email
     FROM utilisateur
     WHERE utilisateur.email = p_email AND utilisateur.psswd = SHA2(p_psswd, 512);
-<<<<<<< HEAD
-=======
 END //
 
 CREATE OR REPLACE PROCEDURE insert_utilisateur_seance (
@@ -185,5 +183,4 @@ BEGIN
         p_id_seance_test,
         p_id_statut_inscription 
     );
->>>>>>> joseph
 END //

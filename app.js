@@ -15,7 +15,6 @@ app.use(cors({
     credentials: true                                       // passer les credentials en true pour les verifs de cookies
 }))
 
-
 app.use(session({
     secret: 'Jean-michel',
     saveUninitialized: false,
@@ -34,8 +33,7 @@ app.get('/api', ( _ , res) =>{                              // route pour avoir 
 
 //* -------------------------------------------Ajout de la route pour nos procédures stocker------------------------------------------------ *//
 
-app.use('/api', route)                          // Préfixe des routes pour ? (indicatif)
-
+app.use('/api', route)                          // Préfixe des routes 
 
 //* Port d'écoute du server  */
 app.listen(process.env.PORT, () => {
