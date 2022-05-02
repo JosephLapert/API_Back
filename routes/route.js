@@ -47,8 +47,11 @@ router
     .get(logout)
 router
     .route('/inscription/')
+    .get(selectSeanceTest)
     .post(insertInscription)
+
 router                              
-    .route('/authent/')            // route pour l'authentification mobile de l'entraîneur
-    .post(loginMobile)                   // post pour log l'entraîneur sur l'appli mobile
+    .route('/authent/')                     // route pour l'authentification mobile de l'entraîneur
+    .post(loginMobile)                      // post pour log l'entraîneur sur l'appli mobile
+
 module.exports = router;                //export pour l'utiliser dans un autre fichier */
