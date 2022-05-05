@@ -22,7 +22,7 @@ app.use(session({
     secret: 'Jean-michel',
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: true, secure: process.env.NODE_ENV == 'prod', maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
 }));
 
 /**------------------------------------------------------Serveur express--------------------------------------------- **/
