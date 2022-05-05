@@ -27,7 +27,7 @@ app.use(session({
 
 /**------------------------------------------------------Serveur express--------------------------------------------- **/
 const PREFIX = process.env.NODE_ENV == 'dev' ? '/api' : '/' ;
-app.get('/api', ( _ , res) =>{                              // route pour avoir des infos : 2 params (req, res) <= function callback
+app.get(PREFIX, ( _ , res) =>{                              // route pour avoir des infos : 2 params (req, res) <= function callback
 
     res.status(200).json({
         success: 'Vous etes connecté !',
@@ -36,7 +36,7 @@ app.get('/api', ( _ , res) =>{                              // route pour avoir 
 
 //* -------------------------------------------Ajout de la route pour nos procédures stocker------------------------------------------------ *//
 
-app.use('/api', route)                          // Préfixe des routes 
+app.use(PREFIX, route)                          // Préfixe des routes 
 
 //* Port d'écoute du server  */
 app.listen(process.env.PORT, () => {
