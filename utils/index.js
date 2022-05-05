@@ -1,4 +1,4 @@
-const pool = require('../controllers/database');
+const pool = require('../config/database');
 
 module.exports = {
 
