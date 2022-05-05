@@ -26,7 +26,7 @@ app.use(session({
 }));
 
 /**------------------------------------------------------Serveur express--------------------------------------------- **/
-
+const PREFIX = process.env.NODE_ENV == 'dev' ? '/api' : '/' ;
 app.get('/api', ( _ , res) =>{                              // route pour avoir des infos : 2 params (req, res) <= function callback
 
     res.status(200).json({
