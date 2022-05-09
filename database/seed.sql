@@ -35,12 +35,12 @@ VALUES (1, 'Admis');
 
 -- insert data in utilisateur table
 INSERT INTO utilisateur (id_utilisateur, nom, prenom, ddn, sexe, adresse, cp, ville, pays, mobile, email, psswd)
-VALUES (1, "Lapert" , "Joseph", "2000-02-12", "m", "08 rue de la pierre", "95200", "Sarcelles", "France", "0612345678", "lapert@example.com", SHA2("jojo1", 512)),
-(2, "Sy Choan" , "Tommy", "1980-02-12", "m", "08 rue de la mairie", "93200", "Aulnay", "France", "0612345678", "tommy@example.com", SHA2("jojo1", 512)),
-(3, "Vallet" , "Yann", "1979-02-12", "m", "08 rue de la roue", "92200", "Chatillon", "France", "0612345678", "yann@example.com", SHA2("jojo1", 512)),
-(4, "Zegdhoudi" , "momo", "2026-02-12", "m", "08 rue du mur", "93000", "Bobigny", "France", "0612345678", "momo@example.com", SHA2("jojo1", 512)),
-(5, "Saulnier" , "Guillaume", "2010-02-12", "m", "08 rue du poirier", "77200", "Meaux", "France", "0612345678", "guigui@example.com", SHA2("jojo1", 512)),
-(6, "Khoudou" , "Nordine", "1987-02-12", "m", "27 rue de la fortune", "91200", "Trappe", "France", "0612345678", "nono@example.com", SHA2("jojo1", 512));
+VALUES (1, "Lapert" , "Joseph", "2000-02-12", "m", "08 rue de la pierre", "95200", "Sarcelles", "France", "0612345678", "lapert@example.com", SHA2("jojo1", 256)),
+(2, "Sy Choan" , "Tommy", "1980-02-12", "m", "08 rue de la mairie", "93200", "Aulnay", "France", "0612345678", "tommy@example.com", SHA2("jojo1", 256)),
+(3, "Vallet" , "Yann", "1979-02-12", "m", "08 rue de la roue", "92200", "Chatillon", "France", "0612345678", "yann@example.com", SHA2("jojo1", 256)),
+(4, "Zegdhoudi" , "momo", "2026-02-12", "m", "08 rue du mur", "93000", "Bobigny", "France", "0612345678", "momo@example.com", SHA2("jojo1", 256)),
+(5, "Saulnier" , "Guillaume", "2010-02-12", "m", "08 rue du poirier", "77200", "Meaux", "France", "0612345678", "guigui@example.com", SHA2("jojo1", 256)),
+(6, "Khoudou" , "Nordine", "1987-02-12", "m", "27 rue de la fortune", "91200", "Trappe", "France", "0612345678", "nono@example.com", SHA2("jojo1", 256));
 
 
 -- insert data in inscription table
