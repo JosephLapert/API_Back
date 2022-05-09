@@ -32,8 +32,8 @@ app.get('/api', ( _ , res) =>{                              // route pour avoir 
 });
 
 //* -------------------------------------------Ajout de la route pour nos procédures stocker------------------------------------------------ *//
-
-app.use('/api', route)                          // Préfixe des routes 
+const prefix = process.NODE_ENV === "dev" ? '/api' : ''
+app.use(prefix, route)                          // Préfixe des routes 
 
 //* Port d'écoute du server  */
 app.listen(process.env.PORT, () => {
