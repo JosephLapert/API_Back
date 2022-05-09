@@ -9,7 +9,8 @@
     "prod": "cross-env NODE_ENV=prod nodemon app.js",
     "integrateDB": "cross-env mariadb -u root -p < ./database/schema.sql",
     "integrateProc": "cross-env mariadb -u root -p < ./database/procedures.sql",
-    "integratePermission": "cross-env mariadb -u root -p < ./database/permission.sql"
+    "integratePermission": "cross-env mariadb -u root -p < ./database/permission.sql",
+    "integrateSeed": "cross-env mariadb -u root -p < ./database/seed.sql"
   },
   "author": "",
   "license": "ISC",
