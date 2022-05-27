@@ -60,5 +60,3 @@ CREATE TABLE inscription(
    FOREIGN KEY(id_seance_test) REFERENCES seance_test(id_seance_test),
    FOREIGN KEY(id_statut_inscription) REFERENCES statut_inscription(id_statut_inscription)
 );
-
-

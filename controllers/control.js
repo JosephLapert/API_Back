@@ -373,7 +373,7 @@ module.exports = {                                                              
         return res.status(401).send()
     },
 
-    insertInscription: async (req, res) => {
+    insertInscription: async (req, res) => {                                                    
         let connection;
         const { idUtilisateur, idSeanceTest, idStatutInscription } = req.body
         try {
