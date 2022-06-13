@@ -184,3 +184,14 @@ BEGIN
         p_id_statut_inscription 
     );
 END //
+
+-- Get pour avoir les personnes inscrites dans la table inscription
+CREATE OR REPLACE PROCEDURE utilisateur_seance (
+    IN p_id_utilisateur INT,
+    IN p_id_seance_test INT,
+    IN p_id_statut_inscription INT
+)
+BEGIN
+    SELECT id_utilisateur, id_seance_test, id_statut_inscription
+    FROM inscription;
+END //
