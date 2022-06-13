@@ -1,4 +1,4 @@
-const pool = require('./database');
+const pool = require('../config/database');
 const { call } = require('../utils/index');                                                                         // pas besoin de mettre le '/index' quand le fichier se nomme index.
 const req = require('express/lib/request');
 
