@@ -10,7 +10,9 @@
     "integrateDB": "cross-env mariadb -u root -p < ./database/schema.sql",
     "integrateProc": "cross-env mariadb -u root -p < ./database/procedures.sql",
     "integratePermission": "cross-env mariadb -u root -p < ./database/permission.sql",
-    "integrateDPP": "npm run integrateDB && npm run integrateProc && npm run integratePermission"
+    "integrateSeed" : "cross-env mariadb -u root -p < ./database/seed.sql",
+    "integrateDPP": "cross-env npm run integrateDB && cross-env npm run integrateProc && cross-env npm run integratePermission && cross-env npm run integrateSeed"
+
   },
   "author": "",
   "license": "ISC",
